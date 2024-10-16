@@ -13,7 +13,9 @@
         <div class="nav_icon">
            <a href="/filter/page"><img src="/img/header/search.png"></a>
         </div>
-        <div class="phat_logo"><img src="/img/logos/header_logo.jpg"></div>
+        <div class="phat_logo">
+            <a href="/"><img src="/img/logos/header_logo.jpg"></a>
+        </div>
         <div class="nav_icon"><img src="/img/header/admin.png"></div>
         <div class="nav_icon" sec:authorize="isAnonymous()"><a href="/login"><img src="/img/header/lock.png"></a></div>
         <div class="nav_icon" sec:authorize="isAuthenticated()"><a href="/profile"><img src="/img/header/admin.png"></a></div>

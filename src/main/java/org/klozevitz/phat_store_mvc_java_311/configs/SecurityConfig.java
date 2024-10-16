@@ -37,11 +37,11 @@ public class SecurityConfig {
                                 .requestMatchers("/item/addToCart").authenticated()
                                 .anyRequest().permitAll()
                 )
-//                .formLogin(form ->
-//                        form
-////                                .loginPage("/login")
-//                                .defaultSuccessUrl("/")
-//                                .failureUrl("/login"))
+                .formLogin(form ->
+                        form
+                                .loginPage("/login")
+                                .defaultSuccessUrl("/")
+                                .failureUrl("/login"))
                 .httpBasic();
 
 //                .logout(logout -> logout
