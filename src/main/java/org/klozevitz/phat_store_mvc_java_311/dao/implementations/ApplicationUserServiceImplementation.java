@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.klozevitz.phat_store_mvc_java_311.dao.services.ApplicationUserService;
 import org.klozevitz.phat_store_mvc_java_311.model.secuirty.ApplicationUser;
 import org.klozevitz.phat_store_mvc_java_311.repositories.ApplicationUserRepository;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
