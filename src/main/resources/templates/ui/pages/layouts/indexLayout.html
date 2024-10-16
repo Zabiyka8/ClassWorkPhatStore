@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/styles/style.css"/>
+</head>
+<body>
+<th:block th:fragment="categoriesLayout(categories)">
+<div class="shop">
+    <div class="categories">
+        <th:block th:each="category: ${categories}">
+            <a th:href="@{'/filter?categoryId=' + ${category.id}}">
+                <div class="category">
+                    <div class="category_img">
+                        <img th:src="@{'/img/categories/' + ${category.name} + '.jpg'}">
+                    </div>
+                    <div class="category_caption">
+                        [[${category.name}]]
+                    </div>
+                </div>
+            </a>
+        </th:block>
+    </div>
+    <div class="brands"></div>
+</div>
+</th:block>
+</body>
+</html>
