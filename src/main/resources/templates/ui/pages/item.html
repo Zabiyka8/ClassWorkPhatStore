@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>PHAT_STORE</title>
+    <link rel="stylesheet" href="/styles/style.css"/>
+</head>
+<body>
+<wrapper>
+    <th:block th:insert="~{/ui/pages/layouts/header.html::header}"/>
+    <main>
+        <div class="category_img">
+            <img th:src="@{'/img/shop/' + ${item.brand.name + '/'} + ${item.model} + ${item.brand.name == 'Kangol' ? '.webp' : '.jpeg'}}">
+        </div>
+        <div class="category_caption">
+            <span>[[${item.model}]]</span>
+        </div>
+        <div class="category_caption">
+            <span>[[${item.price}]]</span>
+        </div>
+        <div>
+            <select id="select_color">
+                <option th:each="color: ${colors}">[[${color}]]</option>
+            </select>
+            <select id="select_size">
+                <option th:each="size: ${sizes}">[[${size}]]</option>
+            </select>
+        </div>
+        <input type="text" id="input_itemId" th:value="${item.id}" hidden>
+        <button>add</button>
+    </main>
+    <div class="logo">
+        <img src="/img/logos/main_logo.jpg">
+    </div>
+
+</wrapper>
+</body>
+
+<script src="/scripts/item.js"></script>
+</html>
