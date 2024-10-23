@@ -23,4 +23,12 @@ public class Order extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private Set<OrderPosition> positions;
+
+    public double getPrice() {
+        return positions.stream()
+                .reduce(0.0,
+                        (acc, cur) -> acc = acc + cur.getAmount() * cur.getStockPosition().getItem().getPrice(),
+                        Double::sum
+                );
+    }
 }

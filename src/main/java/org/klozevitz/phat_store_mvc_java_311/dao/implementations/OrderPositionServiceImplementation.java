@@ -35,9 +35,4 @@ public class OrderPositionServiceImplementation implements OrderPositionService 
     public void deleteById(int id) {
 
     }
-
-    @Override
-    public OrderPosition filterOrderPositionByColorAndSizeAndItemId(String color, String size, Integer itemId) {
-        return repo.filterOrderPositionByColorAndSizeAndItemId(color, size, itemId);
-    }
 }

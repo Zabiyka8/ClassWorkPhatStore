@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
-    @Query(value = "SELECT * FROM order_t WHERE user_id = ?1 AND isPaid = 'false' LIMIT 1;", nativeQuery = true)
-    Order findCartByUserId(Integer userId);
+    @Query(value = "SELECT * FROM order_t WHERE profile_id = ?1 AND is_paid = 'false' LIMIT 1;", nativeQuery = true)
+    Order findCartByUserId(Integer profileId);
 
 }

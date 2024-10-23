@@ -33,4 +33,9 @@ public class Profile extends BaseEntity {
         this.user = user;
         this.orders = new HashSet<>();
     }
+
+    public boolean pay(double price) {
+        // логика оплаты через интерфейс платежной системы
+        return true;
+    }
 }

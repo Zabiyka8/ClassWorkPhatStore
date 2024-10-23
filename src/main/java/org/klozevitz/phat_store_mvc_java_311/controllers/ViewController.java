@@ -28,7 +28,6 @@ public class ViewController {
                 .toList();
 
         model.addAttribute("categories", categories);
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return "ui/pages/index";
     }
     @GetMapping("/login")

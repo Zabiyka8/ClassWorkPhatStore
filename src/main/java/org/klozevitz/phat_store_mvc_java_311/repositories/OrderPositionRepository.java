@@ -7,7 +7,4 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface OrderPositionRepository extends JpaRepository<OrderPosition, Integer> {
-    @Query(value = "SELECT * FROM order_position_t WHERE color = ?1 AND size =?2 AND item_id = ?3 LIMIT 1;", nativeQuery = true)
-    OrderPosition filterOrderPositionByColorAndSizeAndItemId(String color, String size, Integer itemId);
-}
+public interface OrderPositionRepository extends JpaRepository<OrderPosition, Integer> { }

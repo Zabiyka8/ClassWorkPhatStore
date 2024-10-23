@@ -11,7 +11,7 @@
     <th:block th:insert="~{/ui/pages/layouts/header.html::header}"/>
     <main>
         <div class="category_img">
-            <img th:src="@{'/img/shop/' + ${item.brand.name + '/'} + ${item.model} + ${item.brand.name=='Kangol'?'.webp': '.jpeg'}}">
+            <img th:src="@{'/img/shop/' + ${item.brand.name + '/'} + ${item.model} + ${item.brand.name == 'Kangol' ? '.webp' : '.jpeg'}}">
         </div>
         <div class="category_caption">
             <span>[[${item.model}]]</span>
@@ -19,6 +19,16 @@
         <div class="category_caption">
             <span>[[${item.price}]]</span>
         </div>
+        <div>
+            <select id="select_color">
+                <option th:each="color: ${colors}">[[${color}]]</option>
+            </select>
+            <select id="select_size">
+                <option th:each="size: ${sizes}">[[${size}]]</option>
+            </select>
+        </div>
+        <input type="text" id="input_itemId" th:value="${item.id}" hidden>
+        <button>add</button>
     </main>
     <div class="logo">
         <img src="/img/logos/main_logo.jpg">
@@ -26,4 +36,6 @@
 
 </wrapper>
 </body>
+
+<script src="/scripts/item.js"></script>
 </html>
