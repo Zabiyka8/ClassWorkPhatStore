@@ -3,6 +3,7 @@ package org.klozevitz.phat_store_mvc_java_311.model.entities.shop;
 import jakarta.persistence.*;
 import lombok.*;
 import org.klozevitz.phat_store_mvc_java_311.model.BaseEntity;
+import org.klozevitz.phat_store_mvc_java_311.model.entities.itemAttributes.Status;
 
 import java.util.Set;
 
@@ -14,13 +15,12 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Order extends BaseEntity {
-    @Column(name = "isPaid")
-    private Boolean isPaid;
-
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private Status status;
     @ManyToOne
     private Profile profile;
-
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "order_id")
     private Set<OrderPosition> positions;
 

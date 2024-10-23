@@ -1,17 +1,10 @@
 package org.klozevitz.phat_store_mvc_java_311.controllers;
 
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.klozevitz.phat_store_mvc_java_311.dao.services.ApplicationUserService;
 import org.klozevitz.phat_store_mvc_java_311.dao.services.ItemService;
-import org.klozevitz.phat_store_mvc_java_311.dao.services.OrderPositionService;
-import org.klozevitz.phat_store_mvc_java_311.dao.services.OrderService;
 import org.klozevitz.phat_store_mvc_java_311.model.entities.itemAttributes.Color;
 import org.klozevitz.phat_store_mvc_java_311.model.entities.itemAttributes.Size;
-import org.klozevitz.phat_store_mvc_java_311.model.entities.shop.OrderPosition;
 import org.klozevitz.phat_store_mvc_java_311.model.entities.stock.entities.Item;
-import org.klozevitz.phat_store_mvc_java_311.model.entities.stock.entities.StockPosition;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +18,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ItemController {
     private final ItemService itemService;
-    private final OrderPositionService orderPositionService;
-    private final OrderService orderService;
-    private final ApplicationUserService applicationUserService;
 
     @GetMapping
     public String itemPage(Model model,@RequestParam Integer itemId) {
@@ -53,13 +43,4 @@ public class ItemController {
         }
         return null;
     }
-
-    @PostMapping("/addToCart")
-    @ResponseBody
-    public void addToCart(HttpServletRequest request, @RequestParam String color, @RequestParam String size, @RequestParam Integer itemId){
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        orderService.addToCart(email, color, size, itemId);
-        System.out.println();
-    }
-
 }

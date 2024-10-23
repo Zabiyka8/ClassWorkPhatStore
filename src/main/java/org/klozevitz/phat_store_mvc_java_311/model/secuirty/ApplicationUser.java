@@ -3,6 +3,7 @@ package org.klozevitz.phat_store_mvc_java_311.model.secuirty;
 import jakarta.persistence.*;
 import lombok.*;
 import org.klozevitz.phat_store_mvc_java_311.model.BaseEntity;
+import org.klozevitz.phat_store_mvc_java_311.model.entities.itemAttributes.Status;
 import org.klozevitz.phat_store_mvc_java_311.model.entities.shop.Order;
 import org.klozevitz.phat_store_mvc_java_311.model.entities.shop.Profile;
 import org.springframework.security.core.userdetails.User;
@@ -41,7 +42,7 @@ public class ApplicationUser extends BaseEntity {
                 .email(email)
                 .orders(new HashSet<>() {{
                     add(Order.builder()
-                            .isPaid(false)
+                            .status(Status.CART)
                             .positions(new HashSet<>())
                             .build());
                 }})

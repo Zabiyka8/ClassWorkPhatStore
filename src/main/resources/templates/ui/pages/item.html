@@ -11,7 +11,7 @@
     <th:block th:insert="~{/ui/pages/layouts/header.html::header}"/>
     <main>
         <div class="category_img">
-            <img th:src="@{'/img/shop/' + ${item.brand.name + '/'} + ${item.model} + ${item.brand.name == 'Kangol' ? '.webp' : '.jpeg'}}">
+            <img th:src="@{'/img/shop/' + ${item.brand.name + '/'} + ${item.model} + '.jpeg'}">
         </div>
         <div class="category_caption">
             <span>[[${item.model}]]</span>
@@ -36,6 +36,6 @@
 
 </wrapper>
 </body>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/scripts/item.js"></script>
 </html>

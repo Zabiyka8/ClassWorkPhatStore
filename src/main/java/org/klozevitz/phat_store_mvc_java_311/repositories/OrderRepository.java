@@ -10,5 +10,4 @@ import org.springframework.stereotype.Repository;
 public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Query(value = "SELECT * FROM order_t WHERE profile_id = ?1 AND is_paid = 'false' LIMIT 1;", nativeQuery = true)
     Order findCartByUserId(Integer profileId);
-
 }

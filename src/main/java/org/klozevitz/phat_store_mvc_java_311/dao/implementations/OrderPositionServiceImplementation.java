@@ -3,7 +3,6 @@ package org.klozevitz.phat_store_mvc_java_311.dao.implementations;
 import lombok.RequiredArgsConstructor;
 import org.klozevitz.phat_store_mvc_java_311.dao.services.OrderPositionService;
 import org.klozevitz.phat_store_mvc_java_311.model.entities.shop.OrderPosition;
-import org.klozevitz.phat_store_mvc_java_311.model.entities.stock.entities.Item;
 import org.klozevitz.phat_store_mvc_java_311.repositories.OrderPositionRepository;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +32,6 @@ public class OrderPositionServiceImplementation implements OrderPositionService 
 
     @Override
     public void deleteById(int id) {
-
+        repo.deleteById(id);
     }
 }

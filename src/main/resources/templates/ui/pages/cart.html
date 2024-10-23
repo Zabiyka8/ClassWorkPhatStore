@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>PHAT_STORE</title>
+    <link rel="stylesheet" href="/styles/style.css"/>
+</head>
+<body>
+<wrapper>
+    <th:block th:insert="~{/ui/pages/layouts/header.html::header}"/>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Фото</th>
+                    <th>Модель</th>
+                    <th>Количество</th>
+                    <th>Убрать один товар</th>
+                    <th>Удалить все</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="position: ${cart.positions}">
+                    <td>
+                        <img class="cart_img" th:src="@{'/img/shop/' + ${position.stockPosition.item.brand.name + '/'}
+                        + ${position.stockPosition.item.model} + '.jpeg'}">
+                    </td>
+                    <td>
+                        [[${position.stockPosition.item.model}]]
+                    </td>
+                    <td>
+                        [[${position.amount}]]
+                    </td>
+                    <td>
+                        <form method="post" action="/order/cart/drop">
+                            <input type="text" name="positionId" th:value="${position.id}" hidden>
+                            <input type="submit" value="-">
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="/order/cart/delete">
+                            <input type="text" name="positionId" th:value="${position.id}" hidden>
+                            <input type="submit" value="X">
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <div class="logo">
+        <img src="/img/logos/main_logo.jpg">
+    </div>
+
+</wrapper>
+</body>
+</html>

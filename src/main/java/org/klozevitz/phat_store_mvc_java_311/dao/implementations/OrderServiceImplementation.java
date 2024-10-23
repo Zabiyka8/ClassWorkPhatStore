@@ -9,10 +9,8 @@ import org.klozevitz.phat_store_mvc_java_311.model.entities.shop.Order;
 import org.klozevitz.phat_store_mvc_java_311.model.entities.shop.OrderPosition;
 import org.klozevitz.phat_store_mvc_java_311.model.entities.stock.entities.StockPosition;
 import org.klozevitz.phat_store_mvc_java_311.model.secuirty.ApplicationUser;
-import org.klozevitz.phat_store_mvc_java_311.repositories.OrderPositionRepository;
 import org.klozevitz.phat_store_mvc_java_311.repositories.OrderRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +21,7 @@ public class OrderServiceImplementation implements OrderService {
     private final OrderRepository repo;
     private final StockPositionService stockPositionService;
     private final ApplicationUserService applicationUserService;
+    private final OrderPositionService orderPositionService;
 
 
     @Override
@@ -65,11 +64,36 @@ public class OrderServiceImplementation implements OrderService {
                 .stockPosition(stockPositionToBuy.get())
                 .order(cart)
                 .build();
-        // добавляем запись в чек (корзину)
-        cart.getPositions().add(positionToAdd);
+
+        addToCart(cart, positionToAdd);
         repo.save(cart);
         } else {
             throw new IllegalArgumentException("Такого товара нет в наличии");
         }
+    }
+
+    @Override
+    public Order findByOrderPositionId(int orderPositionId) {
+        return orderPositionService.findById(orderPositionId).get().getOrder();
+    }
+
+    private void addToCart(Order cart, OrderPosition positionToAdd) {
+        // позиция на складе (товар) для дополнения корзины
+        StockPosition stockPosition = positionToAdd.getStockPosition();
+        // Если товар присутствует в корзине, изменяем его количество, в противном случае, добавляем новую строку в корзину
+        if (isStockPositionPresent(cart, stockPosition)) {
+            OrderPosition positionToIncrementAmount = cart.getPositions().stream()
+                    .filter(orderPosition -> orderPosition.getStockPosition().getId() == stockPosition.getId())
+                    .findFirst().get();
+            positionToIncrementAmount.setAmount(positionToIncrementAmount.getAmount() + 1);
+        } else {
+            // добавляем запись в чек (корзину)
+            cart.getPositions().add(positionToAdd);
+        }
+    }
+
+    private boolean isStockPositionPresent(Order cart, StockPosition stockPosition) {
+        return cart.getPositions().stream()
+                .anyMatch(orderPosition -> orderPosition.getStockPosition().getId() == stockPosition.getId());
     }
 }

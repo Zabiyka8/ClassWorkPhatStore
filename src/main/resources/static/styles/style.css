@@ -370,3 +370,8 @@ main .marketing {
 .hidden {
   display: none;
 }
+
+.cart_img {
+  max-width: 70px;
+  max-height: 90px;
+}

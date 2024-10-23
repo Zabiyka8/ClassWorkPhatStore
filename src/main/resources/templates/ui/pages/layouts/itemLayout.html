@@ -13,7 +13,7 @@
                 <a th:href="@{'/item?itemId=' + ${item.id}}">
                     <div class="category">
                         <div class="category_img">
-                            <img th:src="@{'/img/shop/' + ${item.brand.name + '/'} + ${item.model} + ${item.brand.name=='Kangol'?'.webp': '.jpeg'}}">
+                            <img th:src="@{'/img/shop/' + ${item.brand.name + '/'} + ${item.model} + '.jpeg'}">
                         </div>
                         <div class="category_caption">
                             [[${item.model}]]

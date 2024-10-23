@@ -19,7 +19,8 @@ public class Profile extends BaseEntity {
     private String name;
     @Column(name = "email")
     private String email;
-
+    @Column(name = "address")
+    private String address;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_id")
     private Set<Order> orders;
