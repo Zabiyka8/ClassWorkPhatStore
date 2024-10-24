@@ -23,7 +23,10 @@
                 <a href="/admin" sec:authorize="hasRole('ADMIN')">
                     <img src="/img/header/admin.png">
                 </a>
-                <a href="/order/cart" sec:authorize="hasRole('USER')">
+                <a href="/manager" sec:authorize="hasRole('EMPLOYEE')">
+                    <img src="/img/header/admin.png">
+                </a>
+                <a href="/cart" sec:authorize="hasRole('USER')">
                     <img src="/img/header/cart.png">
                 </a>
             </div>

@@ -5,9 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
-    @Query(value = "SELECT * FROM order_t WHERE profile_id = ?1 AND is_paid = 'false' LIMIT 1;", nativeQuery = true)
+    @Query(value = "SELECT * FROM order_t WHERE profile_id = ?1 AND status = 'CART' LIMIT 1;", nativeQuery = true)
     Order findCartByUserId(Integer profileId);
+    @Query(value = "SELECT * FROM order_t WHERE status = 'IS_PAID';", nativeQuery = true)
+    List<Order> ordersToDeliver();
 }

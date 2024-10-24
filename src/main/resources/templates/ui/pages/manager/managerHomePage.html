@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>ManagerHomePage</title>
+    <link rel="stylesheet" href="/styles/style.css"/>
+</head>
+<body>
+<wrapper>
+    <th:block th:insert="~{/ui/pages/layouts/header.html::header}"/>
+    <main>
+        <table>
+            <thead>
+            <tr>
+                <th>id заказа</th>
+                <th>Получатель</th>
+                <th>Адрес</th>
+                <th>email</th>
+                <th>Доставка</th>
+                <th>Отказ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order: ${orders}">
+                <td>[[${order.id}]]</td>
+                <td>[[${order.profile.name}]]</td>
+                <td>[[${order.profile.address}]]</td>
+                <td>[[${order.profile.email}]]</td>
+                <td>
+                    <form method="post" action="/manager/deliver">
+                        <input type="text" name="orderId" th:value="${order.id}" hidden>
+                        <input type="submit" value="Доставить">
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="/manager/decline">
+                        <input type="text" name="orderId" th:value="${order.id}" hidden>
+                        <input type="submit" value="Отказать">
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+    <div class="logo">
+        <img src="/img/logos/main_logo.jpg">
+    </div>
+
+</wrapper>
+</body>
+</html>

@@ -33,13 +33,13 @@
                         [[${position.amount}]]
                     </td>
                     <td>
-                        <form method="post" action="/order/cart/drop">
+                        <form method="post" action="/cart/drop">
                             <input type="text" name="positionId" th:value="${position.id}" hidden>
                             <input type="submit" value="-">
                         </form>
                     </td>
                     <td>
-                        <form method="post" action="/order/cart/delete">
+                        <form method="post" action="/cart/delete">
                             <input type="text" name="positionId" th:value="${position.id}" hidden>
                             <input type="submit" value="X">
                         </form>
@@ -47,6 +47,19 @@
                 </tr>
             </tbody>
         </table>
+
+<!--        форма отображения ошибок покупки-->
+        <form th:if="${payError != null || deliveryError != null}" method="post" action="/cart/match">
+            <span>[[${payError != null ? payError : deliveryError}]]</span>
+            <div th:if="${deliveryError != null}">
+                <span>Оставить только товары, которые есть в наличии</span>
+                <input type="submit" value="оставить">
+            </div>
+        </form>
+
+        <form th:if="${!cart.positions.isEmpty()}" method="post" action="/cart/pay">
+            <input type="submit" value="ОПЛАТИТЬ">
+        </form>
     </main>
     <div class="logo">
         <img src="/img/logos/main_logo.jpg">

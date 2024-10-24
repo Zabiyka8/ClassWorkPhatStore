@@ -23,4 +23,10 @@ public class UserController {
         applicationUserRepository.save(applicationUser);
         return "redirect:/";
     }
+
+//    @PostMapping("localhost:9000/register/{userRef}")
+//    public String emailVerification(@PathVariable String userRef) {
+//
+//    }
+
 }

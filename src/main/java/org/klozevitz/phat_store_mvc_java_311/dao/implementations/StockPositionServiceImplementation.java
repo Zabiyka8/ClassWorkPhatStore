@@ -49,4 +49,10 @@ public class StockPositionServiceImplementation implements StockPositionService 
         }
         return Optional.empty();
     }
+
+    @Override
+    public void remove(StockPosition position, int amount) {
+        position.setAmount(position.getAmount() - amount);
+        repo.save(position);
+    }
 }

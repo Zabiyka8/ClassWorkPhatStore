@@ -5,7 +5,7 @@ const selectSize = document.getElementById('select_size');
 const inputItemId = document.getElementById('input_itemId');
 
 const addToCartRequest = () => $.ajax({
-    url: '/order/addToCart',
+    url: '/cart/add',
     method: 'POST',
     dataType: 'html',
     data: {

@@ -10,4 +10,6 @@ public interface StockPositionService extends DAO<StockPosition> {
 
     @Transactional
     Optional<StockPosition> getOnePosition(String color, String size, Integer itemId);
+
+    void remove(StockPosition position, int amount);
 }
